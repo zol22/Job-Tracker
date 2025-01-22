@@ -24,7 +24,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
     title: '',
     company: '',
     description: '',
-    status: 'Applied', // Default status
+    status: 'In Progress', // Default status
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: string) => {
@@ -90,6 +90,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
             onChange={(e) => handleInputChange(e, 'status')}
             className=" block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           >
+            <option value="In Progress">In Progress</option>
             <option value="Applied">Applied</option>
             <option value="Viewed">Viewed</option>
             <option value="Resume Downloaded">Resume Downloaded</option>
@@ -105,7 +106,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
         <div className="px-3 ">
           <button
             onClick={handleSubmit}
-            className="bg-stone-500 text-white p-2 px-6 rounded-lg hover:bg-stone-700"
+            className="bg-neutral-800 text-white px-4 py-2 rounded-lg hover:bg-neutral-700"
           >
             Add Job
           </button>

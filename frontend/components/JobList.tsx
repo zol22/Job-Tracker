@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Job } from '../types';
+import { useState } from "react";
+import { Job } from "../types";
 
 const JobList = ({
   jobs,
@@ -12,60 +12,112 @@ const JobList = ({
   onAddComment: (id: number, comment: string) => void;
   onDelete: (id: number) => void;
 }) => {
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null); // When a user clicks "View Details", selectedJob is updated with the corresponding job object.
-  const [comment, setComment] = useState(''); // Keeps track of the input for the comment being added.
-  //console.log(selectedJob)
-  return (
-    <div className="mt-4">
-      <h2 className="uppercase tracking-wide text-gray-700 text-l font-bold mb-2">Job Applications</h2>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {jobs.map((job) => (
-          <li key={job.id} className="border p-4 rounded-lg shadow-md bg-white">
-            <h3 className="font-semibold text-sm uppercase tracking-wide text-gray-700  mb-2">{job.title}</h3>
-            <p className="text-sm text-gray-600">{job.company}</p>
-            <p className="text-sm text-gray-600">{job.description}</p>
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Status:</span> {job.status}
-            </p>
-            <div className="mt-2 flex justify-between">
-              <button
-                className="bg-neutral-100 p-2 px-4 rounded-lg text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                onClick={() => setSelectedJob(job)} // Set selected job to display details
-              >
-                View Details
-              </button>
-              <button
-                className="text-white bg-red-500 hover:bg-red-600 px-4 py-1 rounded"
-                onClick={() => onDelete(job.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [comment, setComment] = useState("");
+  const [activeTab, setActiveTab] = useState("All");
 
-      {/*
-        The modal is shown only when selectedJob is not null.
-      */}
+  // Filter jobs based on active tab
+  const filteredJobs =
+    activeTab === "All"
+      ? jobs
+      : activeTab === "In Progress"
+      ? jobs.filter((job) => job.status !== "Completed")
+      : jobs.filter((job) => job.status === "Completed");
+
+  return (
+    <div className="mt-4 p-6 bg-neutral-100 rounded-lg shadow-md">
+      <h2 className="uppercase tracking-wide text-gray-700 text-xl font-bold mb-4">
+        Job Applications
+      </h2>
+
+      {/* Tabs */}
+      <div className="flex gap-4 mb-4 border-b border-neutral-300">
+        {["All", "In Progress", "Completed"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`px-4 py-2 text-sm font-semibold ${
+              activeTab === tab
+                ? "text-neutral-800 border-b-2 border-neutral-800"
+                : "text-neutral-500 hover:text-neutral-800"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Job Table */}
+      <table className="w-full text-left text-sm bg-white rounded-lg shadow-sm">
+        <thead className="bg-neutral-200 text-neutral-700">
+          <tr>
+            <th className="px-4 py-2">Title</th>
+            <th className="px-4 py-2">Company</th>
+            <th className="px-4 py-2">Status</th>
+            <th className="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredJobs.length > 0 ? (
+            filteredJobs.map((job) => (
+              <tr
+                key={job.id}
+                className="border-b border-neutral-300 hover:bg-neutral-100"
+              >
+                <td className="px-4 py-2">{job.title}</td>
+                <td className="px-4 py-2">{job.company}</td>
+                <td className="px-4 py-2">{job.status}</td>
+                <td className="px-4 py-2 flex gap-2">
+                  <button
+                    className="text-blue-500 hover:underline"
+                    onClick={() => setSelectedJob(job)}
+                  >
+                    View Details
+                  </button>
+                  <button
+                    className="text-red-500 hover:underline"
+                    onClick={() => onDelete(job.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={4} className="px-4 py-4 text-center text-neutral-500">
+                No jobs found.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* Modal */}
       {selectedJob && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-3/4">
+          <div className="bg-white p-6 rounded-lg w-3/4 shadow-lg">
             <h3 className="text-lg font-bold mb-2">{selectedJob.title}</h3>
             <p className="text-sm mb-4">{selectedJob.company}</p>
             <p className="text-sm mb-4">{selectedJob.description}</p>
             <h4 className="text-md font-semibold">Status</h4>
             <select
               value={selectedJob.status}
-              onChange={(e) => onUpdateStatus(selectedJob.id, e.target.value)}
+              onChange={(e) =>
+                onUpdateStatus(selectedJob.id, e.target.value)
+              }
               className="border p-2 w-full mb-4"
             >
+              <option value="In Progress">In Progress</option>
               <option value="Applied">Applied</option>
               <option value="Viewed">Viewed</option>
               <option value="Resume Downloaded">Resume Downloaded</option>
               <option value="Accepted">Accepted</option>
               <option value="Interview Scheduled">Interview Scheduled</option>
-              <option value="Second Round Interview">Second Round Interview</option>
+              <option value="Second Round Interview">
+                Second Round Interview
+              </option>
+              <option value="Completed">Completed</option>
             </select>
             <h4 className="text-md font-semibold">Comments</h4>
             <ul className="list-disc ml-4 mb-4">
@@ -83,21 +135,23 @@ const JobList = ({
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={() => {
-                onAddComment(selectedJob.id, comment);
-                setComment('');
-              }}
-            >
-              Add Comment
-            </button>
-            <button
-              className="bg-red-500 text-white px-4 py-2 rounded ml-4"
-              onClick={() => setSelectedJob(null)}
-            >
-              Close
-            </button>
+            <div className="flex gap-4">
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded"
+                onClick={() => {
+                  onAddComment(selectedJob.id, comment);
+                  setComment("");
+                }}
+              >
+                Add Comment
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded"
+                onClick={() => setSelectedJob(null)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
