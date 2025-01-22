@@ -17,11 +17,11 @@ const JobList = ({
   //console.log(selectedJob)
   return (
     <div className="mt-4">
-      <h2 className="text-xl font-bold mb-4">Job Applications</h2>
+      <h2 className="uppercase tracking-wide text-gray-700 text-l font-bold mb-2">Job Applications</h2>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {jobs.map((job) => (
           <li key={job.id} className="border p-4 rounded-lg shadow-md bg-white">
-            <h3 className="font-semibold text-lg">{job.title}</h3>
+            <h3 className="font-semibold text-sm uppercase tracking-wide text-gray-700  mb-2">{job.title}</h3>
             <p className="text-sm text-gray-600">{job.company}</p>
             <p className="text-sm text-gray-600">{job.description}</p>
             <p className="text-sm text-gray-600">
@@ -29,7 +29,7 @@ const JobList = ({
             </p>
             <div className="mt-2 flex justify-between">
               <button
-                className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded"
+                className="bg-neutral-100 p-2 px-4 rounded-lg text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
                 onClick={() => setSelectedJob(job)} // Set selected job to display details
               >
                 View Details

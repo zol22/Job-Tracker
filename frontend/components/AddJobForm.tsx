@@ -48,7 +48,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
 
   return (
     <div className="mb-4 p-4 border border-gray-300 rounded-lg shadow-sm bg-white w-full max-w-2xl">
-      <h2 className="text-md uppercase mb-4 tracking-wide text-gray-700 font-bold">Add New Job</h2>
+      <h2 className="text-sm uppercase mb-4 tracking-wide text-gray-700 font-bold">Add New Job</h2>
       <div className="flex flex-wrap gap-x-6 gap-y-2">
         <div className='flex-1 min-w-[200px] px-3 mb-6 border-b border-gray-400 '>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Job Title</label>
@@ -105,7 +105,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
         <div className="px-3 ">
           <button
             onClick={handleSubmit}
-            className="bg-stone-500 text-white p-2 px-6 rounded-lg hover:bg-blue-600"
+            className="bg-stone-500 text-white p-2 px-6 rounded-lg hover:bg-stone-700"
           >
             Add Job
           </button>

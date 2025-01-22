@@ -78,7 +78,7 @@ const Home = () => {
     <div className='flex h-screen'>
       <Reminders />
       <div className="flex-1 p-6">
-      <h1 className="text-2xl font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
+      <h1 className="text-l font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
         <AddJobForm onAdd={handleAddJob} />
         <JobList
           jobs={jobs}
