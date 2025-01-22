@@ -47,48 +47,48 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
   //console.log(newJob)
 
   return (
-    <div className="mb-4 p-4 border border-gray-300 rounded-lg shadow-sm bg-white">
-      <h2 className="text-xl font-semibold mb-4">Add New Job</h2>
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Job Title</label>
+    <div className="mb-4 p-4 border border-gray-300 rounded-lg shadow-sm bg-white w-full max-w-2xl">
+      <h2 className="text-md uppercase mb-4 tracking-wide text-gray-700 font-bold">Add New Job</h2>
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <div className='flex-1 min-w-[200px] px-3 mb-6 border-b border-gray-400 '>
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Job Title</label>
           <input
             type="text"
             placeholder="Enter job title"
             value={newJob.title}
             onChange={(e) => handleInputChange(e, 'title')}
-            className="border p-2 w-full rounded-lg"
+            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Company</label>
+        <div className='flex-1 min-w-[200px] px-3 mb-6 border-b border-gray-400'>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Company</label>
           <input
             type="text"
             placeholder="Enter company name"
             value={newJob.company}
             onChange={(e) => handleInputChange(e, 'company')}
-            className="border p-2 w-full rounded-lg"
+            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Job Description</label>
+        <div className='flex-1 min-w-[200px] px-3 mb-6 border-b border-gray-400'>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Job Description</label>
           <input
             type="text"
             placeholder="Enter job description"
             value={newJob.description}
             onChange={(e) => handleInputChange(e, 'description')}
-            className="border p-2 w-full rounded-lg"
+            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Status</label>
+        <div className='w-full md:w-1/2 px-3 mb-6 '>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Status</label>
           <select
             value={newJob.status}
             onChange={(e) => handleInputChange(e, 'status')}
-            className="border p-2 w-full rounded-lg"
+            className=" block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           >
             <option value="Applied">Applied</option>
             <option value="Viewed">Viewed</option>
@@ -102,10 +102,10 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
           </select>
         </div>
 
-        <div className="flex justify-end">
+        <div className="px-3 ">
           <button
             onClick={handleSubmit}
-            className="bg-blue-500 text-white p-2 px-6 rounded-lg hover:bg-blue-600"
+            className="bg-stone-500 text-white p-2 px-6 rounded-lg hover:bg-blue-600"
           >
             Add Job
           </button>

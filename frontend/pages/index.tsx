@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import DashboardLayout from '../components/DashboardLayout';
 import AddJobForm from '../components/AddJobForm';
 import JobList from '../components/JobList';
+import Reminders from '../components/Reminders';
 import { Job } from '../types';
 
 
@@ -75,16 +75,19 @@ const Home = () => {
   };
 
   return (
-    <DashboardLayout>
-      <h1 className="text-2xl font-bold mb-4">Welcome to the Job Tracker Dashboard</h1>
-      <AddJobForm onAdd={handleAddJob} />
-      <JobList
-        jobs={jobs}
-        onUpdateStatus={handleUpdateStatus}
-        onAddComment={handleAddComment}
-        onDelete={handleDeleteJob}
-      />
-    </DashboardLayout>
+    <div className='flex h-screen'>
+      <Reminders />
+      <div className="flex-1 p-6">
+      <h1 className="text-2xl font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
+        <AddJobForm onAdd={handleAddJob} />
+        <JobList
+          jobs={jobs}
+          onUpdateStatus={handleUpdateStatus}
+          onAddComment={handleAddComment}
+          onDelete={handleDeleteJob}
+        />
+      </div>
+    </div>
   );
 };
 
