@@ -90,7 +90,6 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
             onChange={(e) => handleInputChange(e, 'status')}
             className=" block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           >
-            <option value="In Progress">In Progress</option>
             <option value="Applied">Applied</option>
             <option value="Viewed">Viewed</option>
             <option value="Resume Downloaded">Resume Downloaded</option>
@@ -99,6 +98,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
             <option value="Offer Received">Offer Received</option>
             <option value="Accepted">Accepted</option>
             <option value="Rejected">Rejected</option>
+            <option value="Withdrawn">Withdrawn</option>
 
           </select>
         </div>

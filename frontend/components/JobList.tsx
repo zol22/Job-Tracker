@@ -12,17 +12,27 @@ const JobList = ({
   onAddComment: (id: number, comment: string) => void;
   onDelete: (id: number) => void;
 }) => {
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null); // Tracks the job being viewed in the modal. It is either a Job object or null when no job is selected.
   const [comment, setComment] = useState("");
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState("All"); // Tracks the currently selected tab for filtering jobs
+
+  /* 
+    Key Type (string): Specifies that the keys of this object are strings ("All", "Applied", etc.).
+    Value Type (string[]): Specifies that the values are arrays of strings (e.g., job statuses like ["Applied", "Viewed"]).
+  */
+  const statusCategories: Record<string, string[]> = { // Record is a TypeScript utility type that defines an object with specific key-value pairs
+    All: [],
+    Applied: ["Applied", "Viewed", "Resume Downloaded"],
+    Interviewing: ["Interview Scheduled", "Second Round Interview"],
+    Offers: ["Offer Received", "Accepted"],
+    Archived: ["Rejected", "Withdrawn"],
+  };
 
   // Filter jobs based on active tab
   const filteredJobs =
     activeTab === "All"
       ? jobs
-      : activeTab === "In Progress"
-      ? jobs.filter((job) => job.status !== "Completed")
-      : jobs.filter((job) => job.status === "Completed");
+      : jobs.filter((job) => statusCategories[activeTab]?.includes(job.status));// Why Use ?. (Optional Chaining)?: Ensures that statusCategories[activeTab] exists before calling .includes() to avoid errors.
 
   return (
     <div className="mt-4 p-6 bg-neutral-100 rounded-lg shadow-md">
@@ -32,7 +42,7 @@ const JobList = ({
 
       {/* Tabs */}
       <div className="flex gap-4 mb-4 border-b border-neutral-300">
-        {["All", "In Progress", "Completed"].map((tab) => (
+        {Object.keys(statusCategories).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -108,16 +118,17 @@ const JobList = ({
               }
               className="border p-2 w-full mb-4"
             >
-              <option value="In Progress">In Progress</option>
               <option value="Applied">Applied</option>
               <option value="Viewed">Viewed</option>
               <option value="Resume Downloaded">Resume Downloaded</option>
-              <option value="Accepted">Accepted</option>
               <option value="Interview Scheduled">Interview Scheduled</option>
               <option value="Second Round Interview">
                 Second Round Interview
               </option>
-              <option value="Completed">Completed</option>
+              <option value="Offer Received">Offer Received</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Withdrawn">Withdrawn</option>
             </select>
             <h4 className="text-md font-semibold">Comments</h4>
             <ul className="list-disc ml-4 mb-4">
