@@ -4,6 +4,7 @@ import JobList from '../components/JobList';
 import Reminders from '../components/Reminders';
 import { Job } from '../types';
 import Affirmation from '../components/Affirmation';
+import Image from 'next/image';
 
 
 
@@ -76,25 +77,31 @@ const Home = () => {
   };
 
   return (
-    <div className='flex h-screen'>
-
-      {/* Left Sidebar */}
-      <div className="w-full lg:w-1/3 bg-neutral-100 p-4 flex flex-col gap-2">
-        <Affirmation />
-        <Reminders />
-      </div>
-    
-      {/* Main Content */}
-      <div className="flex-1 p-6">
-        <h1 className="text-l font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
-          <AddJobForm onAdd={handleAddJob} />
-          <JobList
-            jobs={jobs}
-            onUpdateStatus={handleUpdateStatus}
-            onAddComment={handleAddComment}
-            onDelete={handleDeleteJob}
-          />
-      </div>
+    <div className="min-h-screen p-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+              {/* Left Column */}
+              <div className="flex flex-col gap-2 w-full lg:w-1/3 bg-neutral-100">
+                  <Affirmation />
+                  <Reminders />
+                  {/* Image Section */}
+                  <div className="bg-neutral-100 p-4 rounded-lg shadow-lg">
+                
+                      <Image src="/images/laptop.jpg" alt="Laptop image" width={500} height={500} className="w-full h-auto rounded-lg"
+                      />
+                  </div>
+              </div>
+              {/* Main Content */}
+              <div className="flex-1 p-6">
+                <h1 className="text-l font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
+                  <AddJobForm onAdd={handleAddJob} />
+                  <JobList
+                    jobs={jobs}
+                    onUpdateStatus={handleUpdateStatus}
+                    onAddComment={handleAddComment}
+                    onDelete={handleDeleteJob}
+                  />
+              </div>
+    </div>
     </div>
   );
 };

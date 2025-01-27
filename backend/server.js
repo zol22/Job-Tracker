@@ -76,7 +76,7 @@ app.get('/api/jobs', (req, res) => {
 app.post('/api/jobs', (req, res) => {
   const newJob = req.body; // contains the parsed JSON object, thanks to express.json() middleware. It's already a JavaScript object (not a JSON string).
   newJob.id = jobs.length + 1; // Assign a new ID
-  newJob.status = newJob.status || 'In Progress'; // Default status
+  newJob.status = newJob.status || 'Applied'; // Default status
   jobs.push(newJob);
   res.status(201).json(newJob); //Sending back the job as JSON in the response body
 

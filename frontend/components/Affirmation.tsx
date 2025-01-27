@@ -12,11 +12,11 @@ const Affirmation = () => {
   };
 
   return (
-    <div className="h-screen p-6 flex justify-center items-start">
+    <div className="p-6 flex justify-center items-start">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         {/* Header */}
         <h1 className="text-lg font-semibold text-neutral-800 mb-4">
-          Today's Affirmation
+          Today&apos;s Affirmation
         </h1>
 
         {savedAffirmation ? (

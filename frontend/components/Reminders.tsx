@@ -16,7 +16,7 @@ const Reminders = () => {
   };
 
   return (
-    <div className="h-screen p-6 flex justify-center items-start">
+    <div className="p-6 flex justify-center items-start">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         {/* Header */}
         <h1 className="text-lg font-semibold text-neutral-800 mb-4">
@@ -27,17 +27,17 @@ const Reminders = () => {
         </p>
 
         {/* Add Reminder */}
-        <div className="flex items-center gap-2 mb-4">
+        <div>
           <input
             type="text"
             placeholder="Add a new reminder..."
             value={newReminder}
             onChange={(e) => setNewReminder(e.target.value)}
-            className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:outline-none text-neutral-800"
+            className="w-full px-4 py-2 mb-4 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:outline-none text-neutral-800"
           />
           <button
             onClick={handleAddReminder}
-            className="bg-neutral-800 text-white px-4 py-2 rounded-lg hover:bg-neutral-700"
+            className="bg-neutral-800 text-white px-4 py-2 mb-4 rounded-lg hover:bg-neutral-700"
           >
             Add
           </button>

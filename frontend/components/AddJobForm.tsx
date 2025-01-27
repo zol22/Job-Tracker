@@ -24,7 +24,7 @@ const AddJobForm = ({ onAdd }: { onAdd: (job: NewJob) => void }) => {
     title: '',
     company: '',
     description: '',
-    status: 'In Progress', // Default status
+    status: 'Applied', // Default status
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: string) => {

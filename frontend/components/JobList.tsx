@@ -49,8 +49,12 @@ const JobList = ({
     Conditional Styling:
       The active tab is highlighted using a bold underline (border-b-2).
 
+    overflow-x-auto on Tabs Container:
+      overflow-x-auto makes the tabs scrollable horizontally when the screen is too small (e.g., mobile).
+      whitespace-nowrap ensures that the tabs stay in a single row and don’t wrap onto the next line.
+
   */}
-      <div className="flex gap-4 mb-4 border-b border-neutral-300">
+      <div className="flex gap-4 mb-4 border-b border-neutral-300  overflow-x-auto whitespace-nowrap">
         {Object.keys(statusCategories).map((tab) => (
           <button
             key={tab}
@@ -67,6 +71,7 @@ const JobList = ({
       </div>
 
       {/* Job Table */}
+      <div className="overflow-x-auto">
       <table className="w-full text-left text-sm bg-white rounded-lg shadow-sm">
         <thead className="bg-neutral-200 text-neutral-700">
           <tr>
@@ -111,6 +116,7 @@ const JobList = ({
           )}
         </tbody>
       </table>
+      </div>
 
       {/* Modal */}
       {selectedJob && (
