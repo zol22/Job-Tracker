@@ -16,7 +16,7 @@ const Reminders = () => {
   };
 
   return (
-    <div className="bg-neutral-100 h-screen p-6 flex justify-center items-start">
+    <div className="h-screen p-6 flex justify-center items-start">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         {/* Header */}
         <h1 className="text-lg font-semibold text-neutral-800 mb-4">

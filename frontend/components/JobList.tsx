@@ -40,7 +40,16 @@ const JobList = ({
         Job Applications
       </h2>
 
-      {/* Tabs */}
+  {/* 
+    Object.keys(statusCategories):
+      Retrieves an array of the keys from statusCategories (e.g., ["All", "Applied", "Interviewing", "Offers", "Archived"]).
+    Dynamic Button Creation:
+      Loops through the keys to create a button for each tab.
+      Updates activeTab when a button is clicked.
+    Conditional Styling:
+      The active tab is highlighted using a bold underline (border-b-2).
+
+  */}
       <div className="flex gap-4 mb-4 border-b border-neutral-300">
         {Object.keys(statusCategories).map((tab) => (
           <button
@@ -113,9 +122,18 @@ const JobList = ({
             <h4 className="text-md font-semibold">Status</h4>
             <select
               value={selectedJob.status}
-              onChange={(e) =>
-                onUpdateStatus(selectedJob.id, e.target.value)
-              }
+              /* 
+              What It Does:
+                Updates the selectedJob object in the local state to reflect the newly selected status.
+                Ensures the dropdown shows the new status immediately after a change.
+              How It Works:
+                prev: Refers to the current selectedJob object.
+                { ...prev, status: newStatus }: Creates a new object with the same properties as prev but with an updated status. */
+              onChange={(e) => {
+                const newStatus = e.target.value;
+                onUpdateStatus(selectedJob.id, newStatus); // Update status in the parent state
+                setSelectedJob((prev) => prev ? { ...prev, status: newStatus } : null); // Update the local `selectedJob` state
+              }}
               className="border p-2 w-full mb-4"
             >
               <option value="Applied">Applied</option>
@@ -148,7 +166,7 @@ const JobList = ({
             />
             <div className="flex gap-4">
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
+                className="bg-neutral-800 text-white px-4 py-2 rounded-lg hover:bg-neutral-700"
                 onClick={() => {
                   onAddComment(selectedJob.id, comment);
                   setComment("");
