@@ -5,8 +5,13 @@ const port = 5000;
 
 // Middleware
 app.use(express.json()); // middleware automatically parses this JSON string into a JavaScript object. 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://silly-cucurucho-24341f.netlify.app"], // Replace with your frontend's deployed URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Optional if cookies/auth are involved
+  })
+);
 // Sample in-memory database (could be replaced with a real database like MongoDB or SQL)
 let jobs = [
     {

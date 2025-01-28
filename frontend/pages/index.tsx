@@ -6,6 +6,10 @@ import { Job } from '../types';
 import Affirmation from '../components/Affirmation';
 import Image from 'next/image';
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
 
 
 const Home = () => {
@@ -26,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch('http://localhost:5000/api/jobs');
+      const response = await fetch(`${apiUrl}/api/jobs`);
       const data = await response.json();
       setJobs(data);
     };
