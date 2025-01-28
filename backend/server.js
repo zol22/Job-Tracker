@@ -40,11 +40,11 @@ let jobs = [
         title: 'Full Stack Developer',
         company: 'Deloitte',
         description: 'Work with React, Express &  SQL',
-        status: 'Viewed',
-        comments: ['Resume viewed on January 22, 2025'],
+        status: 'Interview Scheduled',
+        comments: ['Interview Scheduled on January 22, 2025'],
         history: [
           { status: 'Applied', date: '2025-01-08' },
-          { status: 'Resume viewed', date: '2025-01-22' },
+          { status: 'Interview Scheduled', date: '2025-01-22' },
         ],
     },
     {
