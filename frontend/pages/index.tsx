@@ -41,7 +41,7 @@ const Home = () => {
 
 
   const handleAddJob = async (job: { title: string; description: string; status: string }) => {
-    const response = await fetch('http://localhost:5000/api/jobs', {
+    const response = await fetch(`${apiUrl}/api/jobs`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }, // tells the server that the data being sent in the body is in JSON format.
       body: JSON.stringify(job),//job is already an object structured exactly as the backend expects. Converts the JavaScript object (job) into a JSON string.
@@ -52,12 +52,12 @@ const Home = () => {
   };
 
   const handleDeleteJob = async (id: number) => {
-    await fetch(`http://localhost:5000/api/jobs/${id}`, { method: 'DELETE' });
+    await fetch(`${apiUrl}/api/jobs/${id}`, { method: 'DELETE' });
     setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
   };
 
   const handleUpdateStatus = async (id: number, status: string) => {
-    const response = await fetch(`http://localhost:5000/api/jobs/${id}/status`, {
+    const response = await fetch(`${apiUrl}/api/jobs/${id}/status`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' }, // tells the server that the data being sent in the body is in JSON format.
       body: JSON.stringify({ status }), // Status Need to wrap it in another object. Converts the JavaScript object (job) into a JSON string.
@@ -69,7 +69,7 @@ const Home = () => {
   };
 
   const handleAddComment = async (id: number, comment: string) => {
-    const response = await fetch(`http://localhost:5000/api/jobs/${id}/comments`, {
+    const response = await fetch(`${apiUrl}/api/jobs/${id}/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }, // tells the server that the data being sent in the body is in JSON format.
       body: JSON.stringify({ comment}), // Comment Need to wrap it in another object Equals to {comment: comment} Wraps the string in an object with a `comment` key. Converts the JavaScript object (job) into a JSON string. 
