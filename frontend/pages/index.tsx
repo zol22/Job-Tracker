@@ -90,7 +90,7 @@ const Home = () => {
                   {/* Image Section */}
                   <div className="bg-neutral-100 p-4 rounded-lg shadow-lg">
                 
-                      <Image src="/images/laptop.jpg" alt="Laptop image" width={500} height={500} className="w-full h-auto rounded-lg"
+                      <Image src="/images/laptop.jpg" alt="Laptop image" width={500} height={500} priority className="w-full h-auto rounded-lg"
                       />
                   </div>
               </div>
