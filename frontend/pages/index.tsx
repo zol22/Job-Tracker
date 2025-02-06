@@ -53,17 +53,24 @@ const Home = ({ initialJobs }: { initialJobs: Job[] }) => {
   };
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-        <div className="flex flex-col gap-2 w-full lg:w-1/3 bg-neutral-100">
+    <div className="min-h-screen p-6 bg-gray-100">
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Left Section */}
+        <div className="w-full lg:w-1/3 p-4 rounded-lg">
           <Affirmation />
           <Reminders />
-          <div className="bg-neutral-100 p-4 rounded-lg shadow-lg"></div>
-            <Image src="/images/laptop.jpg" alt="Laptop image" width={500} height={500} priority className="w-full h-auto rounded-lg" />
-          </div>
+          <Image
+            src="/images/laptop.jpg"
+            alt="Laptop image"
+            width={500}
+            height={500}
+            priority
+            className="w-full h-auto rounded-lg"
+          />
         </div>
-        <div className="flex-1 p-6">
-          <h1 className="text-l font-bold mb-4 uppercase tracking-wide text-gray-700">Welcome to the Job Tracker Dashboard</h1>
+  
+        {/* Right Section */}
+        <div className="w-full lg:w-2/3 p-4 bg-white rounded-lg">
           <AddJobForm onAdd={handleAddJob} />
           <JobList
             jobs={jobs}
@@ -73,7 +80,9 @@ const Home = ({ initialJobs }: { initialJobs: Job[] }) => {
           />
         </div>
       </div>
+    </div>
   );
+  
 };
 
 export default Home;
